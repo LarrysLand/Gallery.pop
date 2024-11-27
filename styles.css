@@ -1,0 +1,97 @@
+/* Reset and global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-image:
+        repeating-linear-gradient(
+            to right, transparent 0 100px,
+            #2c2c2c22 100px 101px
+        ),
+        repeating-linear-gradient(
+            to bottom, transparent 0 100px,
+            #2c2c2c22 100px 101px
+        );
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Slider styles */
+.slider {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+
+.slider .item {
+    position: absolute;
+    inset: 0;
+    transform: 
+        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(500px);
+}
+
+.slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #424242;
+    border-radius: 10px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1023px) {
+    .slider {
+        width: 250px;
+        height: 350px;
+    }
+
+    .slider .item {
+        transform: 
+            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(400px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .slider {
+        width: 200px;
+        height: 300px;
+    }
+
+    .slider .item {
+        transform: 
+            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(350px);
+    }
+}
